@@ -12,27 +12,28 @@
 1. 新建目录
 
    ```shell
-   $ mkdir -p $GOPATH/src/github.com/kongyixueyuan.com/
-   $ cd $GOPATH/src/github.com/kongyixueyuan.com/
+   $ mkdir -p $GOPATH/src/github.com/
+   $ cd $GOPATH/src/github.com/
    ```
 
 2. 下载项目
 
    ```go
    $ git clone https://github.com/kevin-hf/education.git
+   $ git checkout master
    ```
 
 3. 进入fixtures目录启动网络
 
    ```shell
-   $ cd $GOPATH/src/github.com/kongyixueyuan.com/education/fixtures
+   $ cd $GOPATH/src/github.com/fabric-identity/fixtures
    $ docker-compose up
    ```
 
 4. 返回至项目根目录
 
    ```shell
-   $ cd $GOPATH/src/github.com/kongyixueyuan.com/education
+   $ cd $GOPATH/src/github.com/fabric-identity
    ```
 
 5. 编译
