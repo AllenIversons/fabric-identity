@@ -3,23 +3,68 @@
   @Dev_Software: GoLand
   @File : controllerHandler
   @Time : 2018/10/18 14:31 
-  @Author : hanxiaodong
+  @Author : AllenIverson
 */
 
 package controller
 
 import (
-	"net/http"
 	"encoding/json"
-	"github.com/fabric-identity/service"
+	"errors"
 	"fmt"
+	"github.com/fabric-identity/service"
+	"io"
+	"net/http"
 )
 
 var cuser User
 
+func (app *Application) readJSON(w http.ResponseWriter, r *http.Request, dst interface{}) error {
+	//将请求body解析到dst中
+	err := json.NewDecoder(r.Body).Decode(dst)
+	if err != nil {
+		//如果在解析的过程中发生错误，开始分类...
+		var syntaxError *json.SyntaxError
+		var unmarshalTypeError * json.UnmarshalTypeError
+		var invalidUnmarshalError *json.InvalidUnmarshalError
+
+		switch {
+		//使用errors.As()函数检查错误类型是否为*json.SyntaxError。如果是，返回错误
+		case errors.As(err, &syntaxError):
+			return fmt.Errorf("body contain badly-formed JSON (at charcter %d)")
+		//某些情况下，因为语法错误Decode()函数可能返回io.ErrUnexpectedEOF错误。
+		case errors.Is(err, io.ErrUnexpectedEOF):
+			return errors.New("body contain badly-formed JSON")
+		//同样捕获*json.UnmarshalTypeError错误，这些错误是因为JSON值和接收对象不匹配。如果错误对应到特定到字段，
+		//我们可以指出哪个字段错误方便客户端debug
+		case errors.As(err, &unmarshalTypeError):
+			if unmarshalTypeError.Field != "" {
+				return fmt.Errorf("body contains incorrect JSON type for field %q", unmarshalTypeError.Field)
+			}
+			return fmt.Errorf("body contains incorrect JSON type (at character %d)", unmarshalTypeError.Offset)
+		//如果解码到内容是空对象，会返回io.EOF。
+		case errors.Is(err, io.EOF):
+			return errors.New("body must not be empty")
+		//如果decode()函数传入一个非空的指针，将返回json.InvalidUnmarshalError。
+		case errors.As(err, &invalidUnmarshalError):
+			panic(err)
+		default:
+			return err
+		}
+	}
+	return nil
+}
+
+
+
 func (app *Application) LoginView(w http.ResponseWriter, r *http.Request)  {
 
 	ShowView(w, r, "login.html", nil)
+}
+
+func (app *Application) RegisterView(w http.ResponseWriter, r *http.Request)  {
+
+	ShowView(w, r, "register.html", nil)
 }
 
 func (app *Application) Index(w http.ResponseWriter, r *http.Request)  {
@@ -34,12 +79,36 @@ func (app *Application) Help(w http.ResponseWriter, r *http.Request)  {
 	}
 	ShowView(w, r, "help.html", data)
 }
+//用户注册
+func (app *Application) Register(w http.ResponseWriter, r *http.Request) {
+	loginName := r.FormValue("loginName")
+	password := r.FormValue("password")
+	rule := r.FormValue("rule")
+
+	newUser := &User{
+		LoginName:		loginName,
+		Password:		password,
+		IsAdmin: 		rule,
+	}
+	fmt.Println(newUser)
+	fmt.Println("初始",len(users))
+	for _,k := range users {
+		if k.LoginName == newUser.LoginName {
+			fmt.Println("已经存在")
+			//w.Write([]byte("a user with this loginName already exists"))
+		}
+	}
+	users = append(users, *newUser)
+	fmt.Println("完成",len(users))
+	ShowView(w, r, "login.html", nil)
+
+}
 
 // 用户登录
 func (app *Application) Login(w http.ResponseWriter, r *http.Request) {
 	loginName := r.FormValue("loginName")
 	password := r.FormValue("password")
-
+	fmt.Println("login:",len(users))
 	var flag bool
 	for _, user := range users {
 		if user.LoginName == loginName && user.Password == password {
@@ -103,9 +172,7 @@ func (app *Application) AddEdu(w http.ResponseWriter, r *http.Request)  {
 		SchoolName:r.FormValue("schoolName"),
 		Major:r.FormValue("major"),
 		QuaType:r.FormValue("quaType"),
-		Length:r.FormValue("length"),
 		Mode:r.FormValue("mode"),
-		Level:r.FormValue("level"),
 		Graduation:r.FormValue("graduation"),
 		CertNo:r.FormValue("certNo"),
 		Photo:r.FormValue("photo"),
@@ -268,9 +335,7 @@ func (app *Application) Modify(w http.ResponseWriter, r *http.Request) {
 		SchoolName:r.FormValue("schoolName"),
 		Major:r.FormValue("major"),
 		QuaType:r.FormValue("quaType"),
-		Length:r.FormValue("length"),
 		Mode:r.FormValue("mode"),
-		Level:r.FormValue("level"),
 		Graduation:r.FormValue("graduation"),
 		CertNo:r.FormValue("certNo"),
 		Photo:r.FormValue("photo"),

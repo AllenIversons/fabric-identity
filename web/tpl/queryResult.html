@@ -25,7 +25,7 @@
                         <td>入学日期</td>
                         <td>毕(结)业日期</td>
                         <td>专业</td>
-                        <td>层次</td>
+                        <td>最高学历</td>
                     </tr>
                     {{range .Edu.Historys}}
                         <tr>
@@ -36,7 +36,7 @@
                             <td>{{.Education.EnrollDate}}</td>
                             <td>{{.Education.GraduationDate}}</td>
                             <td>{{.Education.Major}}</td>
-                            <td>{{.Education.Level}}</td>
+                            <td>{{.Education.QuaType}}</td>
                         </tr>
                     {{end}}
                 </table>
@@ -70,7 +70,7 @@
                   </p>
                   <p>
                       <span>层次：</span>
-                      <span>{{.Edu.Level}}</span>
+                      <span>{{.Edu.QuaType}}</span>
                   </p>
                   <p>
                       <span>毕(结)业：</span>
@@ -102,10 +102,6 @@
                   <p>
                       <span>学习形式：</span>
                       <span>{{.Edu.Mode}}</span>
-                  </p>
-                  <p>
-                      <span>学制：</span>
-                      <span>{{.Edu.Length}}</span>
                   </p>
                   <p>
                       <span>证书编号：</span>

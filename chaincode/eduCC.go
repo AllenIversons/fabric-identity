@@ -1,5 +1,5 @@
 /**
-  @Author : hanxiaodong
+  @Author : AllenIverson
 */
 
 package main
@@ -12,7 +12,7 @@ import (
 	"bytes"
 )
 
-const DOC_TYPE = "eduObj"
+const DOC_TYPE = "stuInfo"
 
 // 保存edu
 // args: education

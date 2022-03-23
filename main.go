@@ -25,7 +25,7 @@ func main() {
 	initInfo := &sdkInit.InitInfo{
 
 		ChannelID: "kevinkongyixueyuan",
-		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/fabric-identity/fixtures/artifacts/channel.tx",
+		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/kongyixueyuan.com/education/fixtures/artifacts/channel.tx",
 
 		OrgAdmin:"Admin",
 		OrgName:"Org1",
@@ -33,7 +33,7 @@ func main() {
 
 		ChaincodeID: EduCC,
 		ChaincodeGoPath: os.Getenv("GOPATH"),
-		ChaincodePath: "github.com/fabric-identity/chaincode/",
+		ChaincodePath: "github.com/kongyixueyuan.com/education/chaincode/",
 		UserName:"User1",
 	}
 
@@ -77,9 +77,7 @@ func main() {
 		SchoolName: "中国政法大学",
 		Major: "社会学",
 		QuaType: "普通",
-		Length: "四年",
 		Mode: "普通全日制",
-		Level: "本科",
 		Graduation: "毕业",
 		CertNo: "111",
 		Photo: "/static/photo/11.png",
@@ -97,9 +95,7 @@ func main() {
 		SchoolName: "中国人民大学",
 		Major: "行政管理",
 		QuaType: "普通",
-		Length: "四年",
 		Mode: "普通全日制",
-		Level: "本科",
 		Graduation: "毕业",
 		CertNo: "222",
 		Photo: "/static/photo/22.png",
@@ -154,9 +150,7 @@ func main() {
 		SchoolName: "中国政法大学",
 		Major: "社会学",
 		QuaType: "普通",
-		Length: "两年",
 		Mode: "普通全日制",
-		Level: "研究生",
 		Graduation: "毕业",
 		CertNo: "333",
 		Photo: "/static/photo/11.png",

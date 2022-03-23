@@ -1,14 +1,17 @@
 /**
-  @Author : hanxiaodong
+  @Author : AllenIverson
 */
 
 package controller
 
-import "github.com/fabric-identity/service"
+import (
+	"github.com/fabric-identity/service"
+)
 
 type Application struct {
 	Setup *service.ServiceSetup
 }
+
 
 type User struct {
 	LoginName	string
@@ -21,14 +24,10 @@ var users []User
 
 func init() {
 
-	admin := User{LoginName:"Hanxiaodong", Password:"123456", IsAdmin:"T"}
-	alice := User{LoginName:"ChainDesk", Password:"123456", IsAdmin:"T"}
-	bob := User{LoginName:"alice", Password:"123456", IsAdmin:"F"}
-	jack := User{LoginName:"bob", Password:"123456", IsAdmin:"F"}
+	adminAccount := User{LoginName:"root", Password:"root", IsAdmin:"T"}
+	stuAccount := User{LoginName:"allen", Password:"123456", IsAdmin:"F"}
 
-	users = append(users, admin)
-	users = append(users, alice)
-	users = append(users, bob)
-	users = append(users, jack)
+	users = append(users, adminAccount)
+	users = append(users, stuAccount)
 
 }
