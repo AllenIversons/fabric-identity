@@ -1,13 +1,13 @@
 /**
-  @Author : hanxiaodong
+  @Author : AllenIverson
 */
 
 package web
 
 import (
-	"net/http"
-	"fmt"
+	"github.com/cloudflare/cfssl/log"
 	"github.com/fabric-identity/web/controller"
+	"net/http"
 )
 
 
@@ -21,6 +21,8 @@ func WebStart(app controller.Application)  {
 	http.HandleFunc("/", app.LoginView)
 	http.HandleFunc("/login", app.Login)
 	http.HandleFunc("/loginout", app.LoginOut)
+	http.HandleFunc("/registed",app.Register)
+	http.HandleFunc("/register", app.RegisterView)
 
 	http.HandleFunc("/index", app.Index)
 	http.HandleFunc("/help", app.Help)
@@ -39,11 +41,12 @@ func WebStart(app controller.Application)  {
 	http.HandleFunc("/modify", app.Modify)	//  修改信息
 
 	http.HandleFunc("/upload", app.UploadFile)
-
-	fmt.Println("启动Web服务, 监听端口号为: 9000")
+	log.Info("启动Web服务, 监听端口号为: 9000")
+	//fmt.Println("启动Web服务, 监听端口号为: 9000")
 	err := http.ListenAndServe(":9000", nil)
 	if err != nil {
-		fmt.Printf("Web服务启动失败: %v", err)
+		log.Errorf("Web服务启动失败: %v", err)
+		//fmt.Printf("Web服务启动失败: %v", err)
 	}
 
 }

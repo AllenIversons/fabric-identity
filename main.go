@@ -5,6 +5,7 @@
 package main
 
 import (
+	"log"
 	"os"
 	"fmt"
 	"github.com/fabric-identity/sdkInit"
@@ -66,38 +67,38 @@ func main() {
 	}
 
 	edu := service.Education{
-		Name: "张三",
-		Gender: "男",
+		Name: "李小冉",
+		Gender: "女",
 		Nation: "汉",
-		EntityID: "101",
-		Place: "北京",
-		BirthDay: "1991年01月01日",
-		EnrollDate: "2009年9月",
-		GraduationDate: "2013年7月",
-		SchoolName: "中国政法大学",
-		Major: "社会学",
-		QuaType: "普通",
+		EntityID: "120225199603180672",
+		Place: "重庆",
+		BirthDay: "1996年03月18日",
+		EnrollDate: "2021年9月",
+		GraduationDate: "2025年7月",
+		SchoolName: "重庆邮电大学",
+		Major: "计算机科学",
+		QuaType: "本科",
 		Mode: "普通全日制",
-		Graduation: "毕业",
-		CertNo: "111",
+		Graduation: "在读",
+		CertNo: "120023456",
 		Photo: "/static/photo/11.png",
 	}
 
 	edu2 := service.Education{
-		Name: "李四",
-		Gender: "男",
+		Name: "范冰冰",
+		Gender: "女",
 		Nation: "汉",
-		EntityID: "102",
-		Place: "上海",
-		BirthDay: "1992年02月01日",
-		EnrollDate: "2010年9月",
+		EntityID: "120225198303040874",
+		Place: "重庆",
+		BirthDay: "1983年03月04日",
+		EnrollDate: "2020年9月",
 		GraduationDate: "2014年7月",
-		SchoolName: "中国人民大学",
-		Major: "行政管理",
+		SchoolName: "重庆邮电大学",
+		Major: "表演专业",
 		QuaType: "普通",
 		Mode: "普通全日制",
-		Graduation: "毕业",
-		CertNo: "222",
+		Graduation: "在读",
+		CertNo: "120025678",
 		Photo: "/static/photo/22.png",
 	}
 
@@ -105,106 +106,36 @@ func main() {
 	if err != nil {
 		fmt.Println(err.Error())
 	}else {
-		fmt.Println("信息发布成功, 交易编号为: " + msg)
+		log.Printf("信息发布成功, 交易编号为: %v",msg)
 	}
 
 	msg, err = serviceSetup.SaveEdu(edu2)
 	if err != nil {
 		fmt.Println(err.Error())
 	}else {
-		fmt.Println("信息发布成功, 交易编号为: " + msg)
+		log.Printf("信息发布成功, 交易编号为: %v",msg)
 	}
 
 	// 根据证书编号与名称查询信息
-	result, err := serviceSetup.FindEduByCertNoAndName("222","李四")
+	result, err := serviceSetup.FindEduByCertNoAndName("120025678","范冰冰")
 	if err != nil {
 		fmt.Println(err.Error())
 	} else {
 		var edu service.Education
 		json.Unmarshal(result, &edu)
-		fmt.Println("根据证书编号与姓名查询信息成功：")
-		fmt.Println(edu)
+		log.Printf("根据证书编号与姓名查询信息成功：%v",edu)
 	}
 
 	// 根据身份证号码查询信息
-	result, err = serviceSetup.FindEduInfoByEntityID("101")
+	result, err = serviceSetup.FindEduInfoByEntityID("120225199603180672")
 	if err != nil {
 		fmt.Println(err.Error())
 	} else {
 		var edu service.Education
 		json.Unmarshal(result, &edu)
-		fmt.Println("根据身份证号码查询信息成功：")
-		fmt.Println(edu)
+		log.Printf("根据身份证号码查询信息成功：%v",edu)
 	}
 
-	// 修改/添加信息
-	info := service.Education{
-		Name: "张三",
-		Gender: "男",
-		Nation: "汉",
-		EntityID: "101",
-		Place: "北京",
-		BirthDay: "1991年01月01日",
-		EnrollDate: "2013年9月",
-		GraduationDate: "2015年7月",
-		SchoolName: "中国政法大学",
-		Major: "社会学",
-		QuaType: "普通",
-		Mode: "普通全日制",
-		Graduation: "毕业",
-		CertNo: "333",
-		Photo: "/static/photo/11.png",
-	}
-	msg, err = serviceSetup.ModifyEdu(info)
-	if err != nil {
-		fmt.Println(err.Error())
-	}else {
-		fmt.Println("信息操作成功, 交易编号为: " + msg)
-	}
-
-	// 根据身份证号码查询信息
-	result, err = serviceSetup.FindEduInfoByEntityID("101")
-	if err != nil {
-		fmt.Println(err.Error())
-	} else {
-		var edu service.Education
-		json.Unmarshal(result, &edu)
-		fmt.Println("根据身份证号码查询信息成功：")
-		fmt.Println(edu)
-	}
-
-	// 根据证书编号与名称查询信息
-	result, err = serviceSetup.FindEduByCertNoAndName("333","张三")
-	if err != nil {
-		fmt.Println(err.Error())
-	} else {
-		var edu service.Education
-		json.Unmarshal(result, &edu)
-		fmt.Println("根据证书编号与姓名查询信息成功：")
-		fmt.Println(edu)
-	}
-
-	/*// 删除信息
-	msg, err = serviceSetup.DelEdu("101")
-	if err != nil {
-		fmt.Println(err.Error())
-	}else {
-		fmt.Println("信息删除成功, 交易编号为: " + msg)
-	}
-
-	// 根据身份证号码查询信息
-	result, err = serviceSetup.FindEduInfoByEntityID("101")
-	if err != nil {
-		fmt.Println(err.Error())
-		fmt.Println("根据身份证号码查询信息失败，指定身份证号码的信息不存在或已被删除...")
-	} else {
-		var edu service.Education
-		json.Unmarshal(result, &edu)
-		fmt.Println("根据身份证号码查询信息成功：")
-		fmt.Println(edu)
-	}*/
-
-	//===========================================//
 
 	app := controller.Application{
 		Setup: &serviceSetup,
