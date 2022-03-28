@@ -19,6 +19,13 @@ type User struct {
 	IsAdmin	string
 }
 
+type StuScore struct {
+	StuClss []*service.Score
+	StuNum string
+	StuName string
+}
+
+var stuScores []StuScore
 
 var users []User
 

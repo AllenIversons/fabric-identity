@@ -157,6 +157,86 @@ func (app *Application) AddEduShow(w http.ResponseWriter, r *http.Request)  {
 	ShowView(w, r, "addEdu.html", data)
 }
 
+func (app *Application) AddScoreShow (w http.ResponseWriter, r *http.Request){
+	data := &struct {
+		CurrentUser User
+		Msg string
+		Flag bool
+	}{
+		CurrentUser:cuser,
+		Msg:"",
+		Flag:false,
+	}
+	ShowView(w, r, "uploadScore.html", data)
+}
+
+//添加成绩信息
+func (app *Application) AddScore(w http.ResponseWriter, r *http.Request) {
+	var formData []*service.Score
+	err := json.NewDecoder(r.Body).Decode(&formData)
+	if err != nil{
+		fmt.Println("AdSet json转结构体出错！err>>> ",err)
+	}
+	for i,v := range formData{
+		fmt.Println(i,v)
+	}
+
+	data := &struct {
+		Items []*service.Score
+		StuNum string
+		StuName string
+	}{
+		Items: []*service.Score{
+			{StuNum: "12345",
+				Num:        "1",
+				ClassType:  "基础课",
+				ClassNum:   "767000101",
+				ClassName:  "中国特色社会主义理论与实践研究",
+				SchoolYear: "第一学期",
+				ClassScore: "90"},
+			{StuNum: "",
+				Num:        "2",
+				ClassType:  "专业课",
+				ClassNum:   "767000104",
+				ClassName:  "计算机网络",
+				SchoolYear: "第二学期",
+				ClassScore: "94"},
+			{StuNum: "",
+				Num:        "3",
+				ClassType:  "公共选修课",
+				ClassNum:   "7767040304",
+				ClassName:  "虚拟现实技术",
+				SchoolYear: "第三学期",
+				ClassScore: "99"},
+			{StuNum: "",
+				Num:        "4",
+				ClassType:  "专业课",
+				ClassNum:   "767040305	",
+				ClassName:  "网络空间安全	",
+				SchoolYear: "第四学期",
+				ClassScore: "96"},
+			{StuNum: "",
+				Num:        "5",
+				ClassType:  "专业课	",
+				ClassNum:   "767000104",
+				ClassName:  "区块链技术",
+				SchoolYear: "第五学期",
+				ClassScore: "99"},
+		},
+
+		StuNum:"12345",
+		StuName:"Allen",
+	}
+	addStu := StuScore{data.Items,data.StuNum,data.StuName}
+	stuScores = append(stuScores, addStu)
+
+	fmt.Println("人数：",len(stuScores))
+	ShowView(w,r,"queryScoreResult.html",data)
+}
+func (app *Application) ShowScore(w http.ResponseWriter, r *http.Request)  {
+	ShowView(w, r, "queryScore.html", nil)
+}
+
 // 添加信息
 func (app *Application) AddEdu(w http.ResponseWriter, r *http.Request)  {
 
@@ -262,6 +342,48 @@ func (app *Application) QueryPage2(w http.ResponseWriter, r *http.Request)  {
 	ShowView(w, r, "query2.html", data)
 }
 
+func (app *Application) QueryPage3(w http.ResponseWriter, r *http.Request)  {
+	data := &struct {
+		CurrentUser User
+		Msg string
+		Flag bool
+	}{
+		CurrentUser:cuser,
+		Msg:"",
+		Flag:false,
+	}
+	ShowView(w, r, "query3.html", data)
+}
+//根据身份证号查询成绩信息
+
+func (app *Application) ByNameFindScore (w http.ResponseWriter, r *http.Request)  {
+	fmt.Println("进入")
+	certNo := r.FormValue("stuNo")
+	fmt.Println("stuNo",certNo)
+	//name := r.FormValue("name")
+	result := StuScore{}
+	for i:=0;i<len(stuScores);i++{
+		fmt.Println("v.StuNum",stuScores[i].StuNum)
+		if stuScores[i].StuNum == certNo{
+			fmt.Println("相等")
+			result.StuClss = stuScores[i].StuClss
+			result.StuName = stuScores[i].StuName
+			result.StuNum = certNo
+		}
+	}
+	data := &struct {
+		Items []*service.Score
+		StuNum string
+		StuName string
+	}{
+		Items:result.StuClss,
+		StuNum:result.StuNum,
+		StuName:result.StuName,
+	}
+	ShowView(w,r,"queryScoreResult.html",data)
+}
+
+
 // 根据身份证号码查询信息
 func (app *Application) FindByID(w http.ResponseWriter, r *http.Request)  {
 	entityID := r.FormValue("entityID")
@@ -289,6 +411,34 @@ func (app *Application) FindByID(w http.ResponseWriter, r *http.Request)  {
 	}
 
 	ShowView(w, r, "queryResult.html", data)
+}
+
+func (app *Application) FindByIDHistory(w http.ResponseWriter, r *http.Request)  {
+	entityID := r.FormValue("entityID")
+	result, err := app.Setup.FindEduInfoByEntityID(entityID)
+	var edu = service.Education{}
+	json.Unmarshal(result, &edu)
+
+	data := &struct {
+		Edu service.Education
+		CurrentUser User
+		Msg string
+		Flag bool
+		History bool
+	}{
+		Edu:edu,
+		CurrentUser:cuser,
+		Msg:"",
+		Flag:false,
+		History:true,
+	}
+
+	if err != nil {
+		data.Msg = err.Error()
+		data.Flag = true
+	}
+
+	ShowView(w, r, "queryHistory.html", data)
 }
 
 // 修改/添加新信息

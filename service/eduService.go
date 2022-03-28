@@ -12,11 +12,11 @@ import (
 
 func (t *ServiceSetup) SaveEdu(edu Education) (string, error) {
 
-	eventID := "eventAddEdu"
+	eventID := "eventAddStu"
 	reg, notifier := regitserEvent(t.Client, t.ChaincodeID, eventID)
 	defer t.Client.UnregisterChaincodeEvent(reg)
 
-	// 将edu对象序列化成为字节数组
+
 	b, err := json.Marshal(edu)
 	if err != nil {
 		return "", fmt.Errorf("指定的edu对象序列化时发生错误")

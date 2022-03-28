@@ -55,27 +55,43 @@
                   <p>
                       <span><font color="#fffaf0">最高学位：</font></span>
                       <span>
+                          <select class="form-control" name="quaType">
+                              <option>本科</option>
+                              <option>硕士</option>
+                              <option>博士</option>
+                          </select>
+                          <!--
                         <input type="text" name="quaType" class="input_text" tabindex="1" onfocus="if(this.placeholder=='学历类别'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='学历类别';this.className ='input_text'}" accesskey="n" type="text" placeholder="学历类别" size="25" autocomplete="off">
+                        -->
                       </span>
                   </p>
                   <p>
                       <span><font color="#fffaf0">毕(结)业：</font></span>
                       <span>
-                        <input type="text" name="graduation" class="input_text" tabindex="1" onfocus="if(this.placeholder=='毕业/结业'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='毕业/结业';this.className ='input_text'}" accesskey="n" type="text" placeholder="毕业/结业" size="25" autocomplete="off">
+
+                        <select class="form-control" name="graduatio">
+                            <option>已毕业</option>
+                            <option>在读</option>
+                        </select>
+
                       </span>
                   </p>
               </div>
               <div class="right">
                   <p>
                       <span><font color="#fffaf0">性别：</font></span>
+
                       <span>
-                        <input type="text" name="gender" class="input_text" tabindex="1" onfocus="if(this.placeholder=='性别'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='性别';this.className ='input_text'}" accesskey="n" type="text" placeholder="性别" size="25" autocomplete="off">
+                          <select class="form-control" name="gender">
+                              <option>男</option>
+                              <option>女</option>
+                          </select>
                       </span>
                   </p>
                   <p>
                       <span><font color="#fffaf0">出生日期：</font></span>
                       <span>
-                        <input type="text" name="birthDay" class="input_text" tabindex="1" onfocus="if(this.placeholder=='出生日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='出生日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="出生日期" size="25" autocomplete="off">
+                        <input type="date" name="birthDay" class="input_text" tabindex="1" onfocus="if(this.placeholder=='出生日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='出生日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="出生日期" size="25" autocomplete="off">
                       </span>
                   </p>
                   <p>
@@ -87,7 +103,7 @@
                   <p>
                       <span><font color="#fffaf0">毕(结)业日期：</font></span>
                       <span>
-                        <input type="text" name="graduationDate" class="input_text" tabindex="1" onfocus="if(this.placeholder=='毕(结)业日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='毕(结)业日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="毕(结)业日期" size="25" autocomplete="off">
+                        <input type="date" name="graduationDate" class="input_text" tabindex="1" onfocus="if(this.placeholder=='毕(结)业日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='毕(结)业日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="毕(结)业日期" size="25" autocomplete="off">
                       </span>
                   </p>
                   <p>
@@ -99,7 +115,13 @@
                   <p>
                       <span><font color="#fffaf0">学习形式：</font></span>
                       <span>
+                          <select class="form-control" name="mode">
+                              <option>全日制</option>
+                              <option>非全日制</option>
+                          </select>
+                          <!--
                         <input type="text" name="mode" class="input_text" tabindex="1" onfocus="if(this.placeholder=='学习形式'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='学习形式';this.className ='input_text'}" accesskey="n" type="text" placeholder="学习形式" size="25" autocomplete="off" placeholder="">
+                        -->
                       </span>
                   </p>
                   <p>
@@ -176,7 +198,6 @@
                 }
             }).fail(function (res) { });
         }
-
         var inputs = $('input[type="text"]');
         // 提交按钮
         $('.btn').click(function() {
@@ -191,7 +212,6 @@
                     return;
                 }
             }
-
             // 成功后提交数据
             // $(location).attr('href','index.html');
             $("form[name='addForm']").submit()

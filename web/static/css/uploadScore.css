@@ -1,0 +1,243 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.wrapperBox{
+    width: 1229px;
+    height: 645px;
+    background-color:#f0ece9 ;
+    margin: 0 auto;
+}
+.header{
+    width: 1200px;
+    height: 111px;
+    margin: 0 auto;
+}
+
+.headerTitle{
+    width: 1200px;
+    height: 56px;
+}
+.headerButton{
+    width: 205px;
+    height: 40px;
+    line-height: 40px;
+}
+.container{
+    width: 1200px;
+    height: 455px;
+    margin: 0 auto;
+    font-size: 12px;
+    text-align: center;
+}
+.footer{
+    width: 1200px;
+    height: 79px;
+    margin: 0 auto;
+}
+/*.pageInformation{*/
+/*    width: 226px;*/
+/*    height: 79px;*/
+/*    background-color: blue;*/
+/*    float: left;*/
+/*}*/
+/**/
+.pageButton{
+    width: 190px;
+    height: 79px;
+    line-height: 79px;
+    float: right;
+
+}
+.addButton{
+    width: 93px;
+    height: 38px;
+    background-color: #5cb85c;
+    border: 1px solid #000000;
+    color: #fff;
+    cursor: pointer;
+}
+#deleteButton{
+    width: 93px;
+    height: 38px;
+    background-color: #d9534f;
+    border: 1px solid #000000;
+    color: #fff;
+    margin-left: 14px;
+    cursor: pointer;
+}
+#prePageButton{
+    width: 88px;
+    height: 38px;
+    background-color: #5cb85c;
+    border: 1px solid #000000;
+    color: #fff;
+    cursor: pointer;
+}
+#nextPageButton{
+    width: 88px;
+    height: 38px;
+    background-color: #d9534f;
+    border: 1px solid #000000;
+    margin-left: 9px;
+    color: #fff;
+    cursor: pointer;
+}
+.viewInf ,.updateInf{
+    color: #ff0000;
+    cursor: pointer;
+}
+.updateInf{
+    margin-left: 9px;
+}
+.container table{
+    border-collapse: collapse;
+    width: 100%;
+}
+.container td{
+    height: 40px;
+}
+.tableHeaher{
+    height: 55px;
+    background-color: #dadee1;
+}
+tr.trHover:hover{
+    background-color: red;
+}
+
+
+
+
+/*headerStyle */
+.headerLine{width: 1200px;color: #999999;text-align: center;font-size: 24px;}
+.headerLine:before,.headerLine:after{content: "";width: 406px;border-top: 4px #c3a080 solid; display: inline-block;
+    vertical-align: middle;}
+.headerLine:before{margin-right: 98px;}
+.headerLine:after{margin-left: 98px;}
+/*end    */
+
+
+/*cintainerStyle  */
+i{font-style: normal;}
+td{
+    height: 40px;
+}
+
+
+#addmodal{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: rgba(0,0,0,0.5);
+    display: none;
+}
+#viewmodal{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: rgba(0,0,0,0.5);
+    display: none;
+}
+#movemodal{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: rgba(0,0,0,0.5);
+    display: none;
+}
+.modal-dialog{
+    position: relative;
+    width: 500px;
+    margin: 0px auto;
+    background: white;
+    border-radius: 5px;
+}
+.modal-header {
+    border-bottom: 1px solid #e5e5e5;
+
+    color: #fff;
+
+    background-color: #555;
+
+    height: 40px;
+
+    line-height: 40px;
+
+    padding-left: 20px;
+}
+.modal-header>i{
+    font-weight: bold;
+    color: #ADADAD;
+    float: right;
+    cursor: pointer;
+}
+.modal-body {
+    position: relative;
+    text-align: center;
+}
+.modal-body input{
+    width: 202px;
+    border: 1px solid #a9a9a9;
+    outline: none;
+    margin: 10px;
+}
+.modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+.addButton_ok{
+    width: 93px;
+    height: 38px;
+    border-radius: 4px;
+    background: #5cb85c;
+    color: #808080;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #aeaeae;
+}
+.addButton_no{
+    width: 93px;
+    height: 38px;
+    border-radius: 4px;
+    background: #fff;
+    color: #808080;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #aeaeae;
+}
+.pageInformation{
+    width: 226px;
+    height: 16px;
+    padding-top: 29px;
+    font-size: 15px;
+    line-height: 16px;
+    float: left;
+}
+
+.updatabtn_ok{
+    width: 93px;
+    height: 38px;
+    border-radius: 4px;
+    background: #fff;
+    color: #808080;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #aeaeae;
+}
+.updatabtn_no{
+    width: 93px;
+    height: 38px;
+    border-radius: 4px;
+    background: #fff;
+    color: #808080;
+    outline: none;
+    cursor: pointer;
+    border: 1px solid #aeaeae;
+}

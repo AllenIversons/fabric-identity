@@ -1,0 +1,33 @@
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+form {
+    margin: 0;
+    padding: 0;
+}
+html,
+
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+img {
+    border: none;
+}

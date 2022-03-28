@@ -34,6 +34,16 @@ type Education struct {
 	Historys	[]HistoryItem	// 当前edu的历史记录
 }
 
+type Score struct {
+	StuNum 		string `json:"StuNum"`
+	Num 		string	`json:"Num"`
+	ClassType 	string	`json:"ClassType"`
+	ClassNum 	string	`json:"ClassNum"`
+	ClassName 	string	`json:"ClassName"`
+	SchoolYear 	string	`json:"SchoolYear"`
+	ClassScore 	string	`json:"ClassScore"`
+}
+
 type HistoryItem struct {
 	TxId	string
 	Education	Education

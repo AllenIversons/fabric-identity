@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml/DTD/xhtml-transitional.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>score</title>
+    <link href="../static/css/base1.css" type="text/css" rel="stylesheet" />
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/editTable.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="../static/css/uploadScore.css">
+    <script language="javascript" type="text/javascript" src="../static/js/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="../static/js/editTable.js"></script>
+
+
+</head>
+<body>
+
+<div class="wrapperBox">
+    <div class="header">
+        <div class="headerTitle">
+            <div class="headerLine">学生成绩添加</div>
+        </div>
+    </div>
+
+    <div>
+        <table class="edtitable" id="edtitable">
+            <thead>
+            <tr>
+                <th colspan="3" style="text-align:center;vertical-align:middle;">
+                    <span><font color="#000000">学号：</font></span>
+                    <span>
+                        <input type="text" class="input_text" name="StuNum" tabindex="1" onfocus="if(this.placeholder=='学号'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='学号';this.className ='input_text'}" accesskey="n" type="text" placeholder="学号" size="25" autocomplete="off">
+                      </span>
+                </th>
+                <th colspan="4" style="text-align:center;vertical-align:middle;">
+                    <span><font color="#000000">姓名：</font></span>
+                    <span>
+                        <input type="text" class="input_text" name="StuName" tabindex="1" onfocus="if(this.placeholder=='姓名'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='姓名';this.className ='input_text'}" accesskey="n" type="text" placeholder="姓名" size="25" autocomplete="off">
+                      </span>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><th style="text-align:center;vertical-align:middle;">序号</th><th style="text-align:center;vertical-align:middle;">课程类型</th><th style="text-align:center;vertical-align:middle;">课程编号</th><th style="text-align:center;vertical-align:middle;">课程名称</th><th style="text-align:center;vertical-align:middle;">学年</th><th style="text-align:center;vertical-align:middle;">成绩</th>
+                <th class="del-col" style="text-align:center;vertical-align:middle;">操作</th>
+            </tr>
+            <tr>
+                <td>1</td><td>基础课</td><td>767000101</td><td>中国特色社会主义理论与实践研究</td><td>第一学期</td><td>90</td><td class="del-col"><a href="javascript:void(0);" class="delBtn">删除</a></td>
+            </tr>
+            <tr>
+                <td>2</td><td>专业课</td><td>767000104</td><td>计算机网络</td><td>第二学期</td><td>94</td><td class="del-col"><a href="javascript:void(0);" class="delBtn">删除</a></td>
+            </tr>
+            <tr>
+                <td>3</td><td>公共选修课</td><td>767040304</td><td>虚拟现实技术</td><td>第三学期</td><td>99</td><td class="del-col">
+                    <a href="javascript:void(0);" class="delBtn">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td><td>专业课</td><td>767040305</td><td>网络空间安全</td><td>第四学期</td><td>96</td><td class="del-col"><a href="javascript:void(0);" class="delBtn">删除</a></td>
+            </tr>
+            <tr>
+                <td>5</td><td>专业课</td><td>767040308</td><td>区块链技术</td><td>第五学期</td><td>99</td><td class="del-col"><a href="javascript:void(0);" class="delBtn">删除</a></td>
+            </tr>
+            <tr class="append-row">
+                <td colspan="7" align="right">
+                    <input type="button" class="addBtn"id="addBtn" value="添 加" />
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <form name="myform" id="myform" action="/addScore" method="post">
+            <input id="JSONText" name="jsontext" type="hidden" value=""/>
+        </form>
+        <button type="button" name="button" class="btn" onclick="saveVari()">上传成绩</button>
+    </div>
+
+</div>
+</body>
+</html>

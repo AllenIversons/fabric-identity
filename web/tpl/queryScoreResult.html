@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>queryResule</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="/static/css/reset.css" rel="stylesheet">
+    <!-- Bootstrap3.3.5 CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/queryResult.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="queryResule">
+        <h2>学生成绩查询结果</h2>
+            <div id="tableDiv">
+                <table id="table" style="margin: 0 auto;">
+                    <thead>
+                    <tr>
+                        <th colspan="3" style="text-align:center;vertical-align:middle;">
+                            <span><font color="#000000">姓名:{{.StuName}}</font></span>
+                        </th>
+                        <th colspan="4" style="text-align:center;vertical-align:middle;">
+                            <span><font color="#000000">学号:{{.StuNum}}</font></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>序号</td>
+                        <td>课程类型</td>
+                        <td>课程编号</td>
+                        <td>课程名称</td>
+                        <td>学年</td>
+                        <td>成绩</td>
+                    </tr>
+                    {{range .Items}}
+                        <tr>
+                            <td>{{.Num}}</td>
+                            <td>{{.ClassType}}</td>
+                            <td>{{.ClassNum }}</td>
+                            <td>{{.ClassName}}</td>
+                            <td>{{.SchoolYear}}</td>
+                            <td>{{.ClassScore}}</td>
+                        </tr>
+                    {{end}}
+                </table>
+            </div>
+
+        <p>
+            <a href="/index">成绩下载</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

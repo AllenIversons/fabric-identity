@@ -35,7 +35,7 @@ type Education struct {
 	GraduationDate	string	`json:"GraduationDate"`	// 毕（结）业日期
 	SchoolName	string	`json:"SchoolName"`	// 学校名称
 	Major	string	`json:"Major"`	// 专业
-	QuaType	string	`json:"QuaType"`	// 学历类别
+	QuaType	string	`json:"QuaType"`	// 最高学历
 	Length	string	`json:"Length"`	// 学制
 	Mode	string	`json:"Mode"`	// 学习形式
 	Level	string	`json:"Level"`	// 层次

@@ -15,13 +15,29 @@
       <div class="m_yah"><a href="/index">首页</a> &gt; 帮助中心</div>
       <div class="m_s_l" id="leftMenu">
 
-        <div class="m_s_l_menu">查询须知</div>
+        <div class="m_s_l_menu">成绩管理</div>
         <ul class="m_s_l_ul">
           <li class="leftMenu0 index">
             <span class="icon_list">&nbsp;</span>
             <a href="javascript:void(0);">信息查询范围</a>
           </li>
+
+          {{if eq .CurrentUser.IsAdmin "T"}}
+            <li class="leftMenu3">
+              <span class="icon_list">&nbsp;</span>
+              <a href="/addScoreInfo">添加成绩信息</a>
+            </li>
+          {{end}}
+
         </ul>
+        {{if eq .CurrentUser.IsAdmin "T"}}
+        <div class="m_s_l_menu">学历认证</div>
+        <ul class="m_s_l_ul">
+          <li class="leftMenu3">
+            <span class="icon_list">&nbsp;</span>
+            <a href="/addEduInfo">添加学历信息</a>
+          </li>
+        {{end}}
 
         <div class="m_s_l_menu">学历查询</div>
         <ul class="m_s_l_ul">
@@ -33,14 +49,11 @@
             <span class="icon_list">&nbsp;</span>
             <a href="/queryPage">根据证书编号查询</a>
           </li>
-
-          {{if eq .CurrentUser.IsAdmin "T"}}
-            <li class="leftMenu3">
-              <span class="icon_list">&nbsp;</span>
-              <a href="/addEduInfo">添加学历信息</a>
-            </li>
-          {{end}}
-
+          <li class="leftMenu2">
+            <span class="icon_list">&nbsp;</span>
+            <a href="/query3">查询历史记录</a>
+          </li>
+          <div class="m_s_l_menu">系统功能</div>
           <li class="leftMenu5">
             <span class="icon_list">&nbsp;</span>
             <a href="/loginout">退出</a>
