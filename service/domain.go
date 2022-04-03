@@ -44,6 +44,24 @@ type Score struct {
 	ClassScore 	string	`json:"ClassScore"`
 }
 
+
+type Archives struct {
+	UserName 		string `json:"UserName"`
+	Sex		 		string	`json:"Sex"`
+	BirthPlace		string 	`json:"BirthPlace"`
+	BirthDay		string	`json:"BirthDay"`
+	Age				string	`json:"Age"`
+	Religion		string	`json:"Religion"`
+	PostCodes		string	`json:"PostCodes"`
+	TypeofCompany	string	`json:"TypeofCompany"`
+	TypeofWork		string	`json:"TypeofWork"`
+	Address			string	`json:"Address"`
+	Telephone		string	`json:"Telephone"`
+	Role			string	`json:"Role"`
+	Married			string	`json:"Married"`
+	Educated		string	`json:"Educated"`
+}
+
 type HistoryItem struct {
 	TxId	string
 	Education	Education

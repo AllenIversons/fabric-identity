@@ -14,7 +14,10 @@ import (
 	"fmt"
 	"github.com/fabric-identity/service"
 	"io"
+	"io/ioutil"
 	"net/http"
+	"strings"
+	"time"
 )
 
 var cuser User
@@ -55,6 +58,142 @@ func (app *Application) readJSON(w http.ResponseWriter, r *http.Request, dst int
 	return nil
 }
 
+//档案管理
+func (app *Application) Management (w http.ResponseWriter, r *http.Request)  {
+	data := &struct{
+		Infos []*ArchivesInfo
+	}{
+		Infos:ArchivesInfos,
+	}
+	ShowView(w, r, "danganmain.html", data)
+}
+//添加
+func (app *Application)DanganAdd(w http.ResponseWriter, r *http.Request){
+	ShowView(w, r, "Dangan-add.html", nil)
+}
+
+func (app *Application)AddArchives(w http.ResponseWriter, r *http.Request)()  {
+
+	bodyBytes, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return
+	}
+	index := strings.Index(string(bodyBytes), "=")
+	requestBody := string(bodyBytes)[index+1:]
+	fmt.Println(requestBody)
+
+	var formData service.Archives
+	err = json.Unmarshal([]byte(requestBody), &formData)
+	//err = json.NewDecoder(r.Body).Decode(&formData)
+	if err != nil{
+		fmt.Println("AdSet json转结构体出错！err>>> ",err)
+	}
+	stuArchives[formData.UserName] = append(stuArchives[formData.UserName], &formData)
+	fmt.Println(len(stuArchives[formData.UserName]))
+	fmt.Println(len(stuArchives["Bob"]))
+	timeStr:=time.Now().Format("2006-01-02 15:04:05")
+	archiveInfo := ArchivesInfo{
+		ArchivesID: "VDHRC",
+		Operator:"root",
+		CurrentUser:"bob",
+		CreateTime:timeStr,
+		UpdateTime:timeStr,
+		InfoMsg:"",
+	}
+	ArchivesInfos = append(ArchivesInfos,&archiveInfo)
+	fmt.Println("档案摘要信息长度:",len(ArchivesInfos))
+	tableLen := len(stuArchives)
+	fmt.Println("总的档案信息长度:",tableLen)
+	data := &struct{
+		Infos []*ArchivesInfo
+	}{
+		Infos:ArchivesInfos,
+	}
+	ShowView(w, r, "Danganmain.html", data)
+}
+//编辑
+func (app *Application)DanganModifyShow(w http.ResponseWriter, r *http.Request){
+	fmt.Println("进入")
+	// 根据证书编号与姓名查询信息
+	//name := r.FormValue("name")
+
+	if _,ok := stuArchives["Bob"];!ok{
+		fmt.Println("没有查询到该用户")
+	}
+	fmt.Println("该用户存在")
+
+	data := &struct {
+		Archives service.Archives
+		CurrentUser User
+	}{
+		Archives:*stuArchives["Bob"][0],
+		CurrentUser:cuser,
+	}
+
+	ShowView(w, r, "Dangan-edit.html", data)
+}
+
+
+func (app *Application)DanganModify(w http.ResponseWriter, r *http.Request){
+	modifyArchives := service.Archives{
+		UserName: r.FormValue("name"),
+		Sex: r.FormValue("sex"),
+		BirthPlace: r.FormValue("birthplace"),
+		BirthDay: r.FormValue("birthday"),
+		Age:r.FormValue("age"),
+		Religion:r.FormValue("religion"),
+		PostCodes:r.FormValue("postcodes"),
+		TypeofCompany:r.FormValue("typeofcompany"),
+		TypeofWork:r.FormValue("typeofwork"),
+		Address:r.FormValue("address"),
+		Telephone:r.FormValue("telephone"),
+		Role:r.FormValue("role"),
+		Married:r.FormValue("married"),
+		Educated:r.FormValue("educated"),
+	}
+	stuArchives["Bob"] = append(stuArchives["Bob"], &modifyArchives)
+	data := &struct {
+		ModifyInfo []*service.Archives
+	}{
+		ModifyInfo:stuArchives["Bob"],
+	}
+	ShowView(w, r, "Dangan-history.html",data)
+}
+
+
+//查看
+
+func (app *Application)DanganCheck(w http.ResponseWriter, r *http.Request){
+	fmt.Println("进入")
+	fmt.Println(len(stuArchives))
+	fmt.Println(len(stuArchives["Bob"]))
+	bodyBytes, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return
+	}
+	index := strings.Index(string(bodyBytes), "=")
+	requestBody := string(bodyBytes)[index+1:index+4]
+	fmt.Println(requestBody+"!")
+	fmt.Println(stuArchives["Bob"])
+	if _,ok := stuArchives[requestBody];!ok{
+		fmt.Println("该用户不存在")
+	}
+	fmt.Println("该用户存在")
+	fmt.Println(len(stuArchives[requestBody]))
+	checkArchives := stuArchives[requestBody][0]
+	fmt.Println(checkArchives.UserName)
+
+	data := &struct{
+		Archives *service.Archives
+	}{
+		Archives:checkArchives,
+	}
+	ShowView(w, r, "Dangan-look.html",data)
+}
+
+func (app *Application)LookArchives(w http.ResponseWriter, r *http.Request){
+	ShowView(w, r, "Dangan-edit.html", nil)
+}
 
 
 func (app *Application) LoginView(w http.ResponseWriter, r *http.Request)  {

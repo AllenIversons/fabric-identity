@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>
+            档案修改
+        </title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" href="../static/css/x-admin.css" media="all">
+    </head>
+    
+    <body>
+        <div class="x-body">
+            <form class="layui-form layui-form-pane" action="/DanganModify" method="post" name="modifyForm">
+                
+              <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        姓名
+                    </label>
+                <div class="layui-input-block">
+                  <input type="text" id="L_title" name="name" required lay-verify="title" value="{{.Archives.UserName}}"
+                        autocomplete="off" class="layui-input">
+                </div>
+                </div>
+                
+                 <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        性别
+                    </label>
+                <div class="layui-input-block">
+                  <input type="text" id="L_title" name="sex" required lay-verify="title" value="{{.Archives.Sex}}"
+                        autocomplete="off" class="layui-input">
+                </div>
+                </div>
+                
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        籍贯
+                    </label>
+                <div class="layui-input-block">
+                  <input type="text" id="L_title" name="birthplace" required lay-verify="title" value="{{.Archives.BirthPlace}}"
+                        autocomplete="off" class="layui-input">
+                </div>
+                </div>
+                
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        年龄
+                    </label>
+                <div class="layui-input-block">
+                  <input type="text" id="L_title" name="age" required lay-verify="title" value="{{.Archives.Age}}"
+                        autocomplete="off" class="layui-input">
+                </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        出生日期
+                    </label>
+                    <div class="layui-input-block">
+                        <input type="text" id="L_title" name="birthday" required lay-verify="title" value="{{.Archives.BirthDay}}"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        婚姻状况
+                    </label>
+                    <div class="layui-input-block">
+                        <input type="text" id="L_title" name="married" required lay-verify="title" value="{{.Archives.Married}}"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        社会角色
+                    </label>
+                    <div class="layui-input-block">
+                        <input type="text" id="L_title" name="role" required lay-verify="title" value="{{.Archives.Role}}"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        居住地址
+                    </label>
+                    <div class="layui-input-block">
+                        <input type="text" id="L_title" name="address" required lay-verify="title" value="{{.Archives.Address}}"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        邮政编码
+                    </label>
+                    <div class="layui-input-block">
+                        <input type="text" id="L_title" name="postcodes" required lay-verify="title" value="{{.Archives.PostCodes}}"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        文化程度
+                    </label>
+                <div class="layui-input-block">
+                  <input type="text" id="L_title" name="educated" required lay-verify="title" value="{{.Archives.Educated}}"
+                        autocomplete="off" class="layui-input">
+                </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        公司性质
+                    </label>
+                    <div class="layui-input-block">
+                        <input type="text" id="L_title" name="typeofcompany" required lay-verify="title" value="{{.Archives.TypeofCompany}}"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        工作性质
+                    </label>
+                    <div class="layui-input-block">
+                        <input type="text" id="L_title" name="typeofwork" required lay-verify="title" value="{{.Archives.TypeofWork}}"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        宗教信仰
+                    </label>
+                <div class="layui-input-block">
+                  <input type="text" id="L_title" name="religion" required lay-verify="title" value="{{.Archives.Religion}}"
+                        autocomplete="off" class="layui-input">
+                </div>
+                </div>
+                
+                <div class="layui-form-item">
+                    <label for="L_title" class="layui-form-label">
+                        联系电话
+                    </label>
+                <div class="layui-input-block">
+                  <input type="text" id="L_title" name="telephone" required lay-verify="title" value="{{.Archives.Telephone}}"
+                        autocomplete="off" class="layui-input">
+                </div>
+                </div>
+                <div class="layui-form-item">
+                    <button class="layui-btn" id="DanganBtn">
+                        更改
+                    </button>
+                </div>
+          </form>
+    </div>
+    </body>
+
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('.DanganBtn').click(function() {
+
+                $("form[name='modifyForm']").submit()
+            })
+        })
+    </script>
+
+</html>

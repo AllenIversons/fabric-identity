@@ -21,3 +21,9 @@ type InitInfo struct {
 	ChaincodePath	string
 	UserName	string
 }
+
+type ChainCodeInfo struct {
+	ChaincodeID	string
+	ChaincodeGoPath	string
+	ChaincodePath	string
+}

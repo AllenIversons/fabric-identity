@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>queryResule</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="/static/css/reset.css" rel="stylesheet">
+    <!-- Bootstrap3.3.5 CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/queryResult.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="queryResule">
+        <h2>个人档案查询结果</h2>
+        <div class="top">
+            <div class="left">
+                <p>
+                    <span>姓名：</span>
+                    <span>{{.Archives.UserName}}</span>
+                </p>
+                <p>
+                    <span>性别：</span>
+                    <span>{{.Archives.Sex}}</span>
+                </p>
+                <p>
+                    <span>年龄：</span>
+                    <span>{{.Archives.Age}}</span>
+                </p>
+                <p>
+                    <span>宗教信仰：</span>
+                    <span>{{.Archives.Religion}}</span>
+                </p>
+                <p>
+                    <span>单位性质：</span>
+                    <span>{{.Archives.TypeofCompany}}</span>
+                </p>
+                <p>
+                    <span>社会角色：</span>
+                    <span>{{.Archives.Role}}</span>
+                </p>
+            </div>
+            <div class="right">
+                <p>
+                    <span>籍贯：</span>
+                    <span>{{.Archives.BirthPlace}}</span>
+                </p>
+                <p>
+                    <span>出生日期：</span>
+                    <span>{{.Archives.BirthDay}}</span>
+                </p>
+                <p>
+                    <span>居住地址：</span>
+                    <span>{{.Archives.Address}}</span>
+                </p>
+                <p>
+                    <span>移动电话：</span>
+                    <span>{{.Archives.Telephone}}</span>
+                </p>
+                <p>
+                    <span>婚姻状态：</span>
+                    <span>{{.Archives.Married}}</span>
+                </p>
+                <p>
+                    <span>教育程度：</span>
+                    <span>{{.Archives.Educated}}</span>
+                </p>
+
+            </div>
+        </div>
+        <p></p>
+        <p></p>
+        <p></p>
+        <p>
+            {{if eq .CurrentUser.IsAdmin "T"}}
+                <a href="/modifyArchives?name={{.Archives.UserName}}">修改信息</a>
+            {{end}}
+            <a href="/management">返回上一页</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

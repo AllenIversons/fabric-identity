@@ -24,6 +24,20 @@ func WebStart(app controller.Application)  {
 	http.HandleFunc("/registed",app.Register)
 	http.HandleFunc("/register", app.RegisterView)
 
+	//档案管理
+	http.HandleFunc("/management", app.Management)
+	http.HandleFunc("/danganadd",app.DanganAdd)
+	http.HandleFunc("/addArchives",app.AddArchives)
+
+
+	http.HandleFunc("/queryArchives",app.DanganCheck)
+
+
+	http.HandleFunc("/modifyArchives",app.DanganModifyShow)
+	http.HandleFunc("/DanganModify",app.DanganModify)
+
+
+
 	http.HandleFunc("/index", app.Index)
 	http.HandleFunc("/help", app.Help)
 

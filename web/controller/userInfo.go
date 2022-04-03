@@ -25,7 +25,19 @@ type StuScore struct {
 	StuName string
 }
 
+type ArchivesInfo struct {
+	ArchivesID	string
+	Operator string
+	CurrentUser	string
+	CreateTime  string
+	UpdateTime  string
+	InfoMsg 	string
+}
+
 var stuScores []StuScore
+var stuArchives map[string][]*service.Archives
+
+var ArchivesInfos []*ArchivesInfo
 
 var users []User
 
@@ -36,5 +48,7 @@ func init() {
 
 	users = append(users, adminAccount)
 	users = append(users, stuAccount)
+
+	stuArchives = make(map[string][]*service.Archives)
 
 }
