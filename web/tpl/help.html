@@ -28,17 +28,36 @@
               <a href="/addScoreInfo">添加成绩信息</a>
             </li>
           {{end}}
+          <li class="leftMenu3">
+            <span class="icon_list">&nbsp;</span>
+            <a href="/queryScore">查询成绩信息</a>
+          </li>
 
         </ul>
         {{if eq .CurrentUser.IsAdmin "T"}}
         <div class="m_s_l_menu">学历认证</div>
         <ul class="m_s_l_ul">
+
+            <li class="leftMenu3">
+              <span class="icon_list">&nbsp;</span>
+              <a href="/addEduInfo">添加学历信息</a>
+            </li>
+
+        </ul>
+        {{end}}
+        <div class="m_s_l_menu">档案管理</div>
+        <ul class="m_s_l_ul">
+          {{if eq .CurrentUser.IsAdmin "T"}}
+            <li class="leftMenu3">
+              <span class="icon_list">&nbsp;</span>
+              <a href="/management2">添加/更新档案信息</a>
+            </li>
+          {{end}}
           <li class="leftMenu3">
             <span class="icon_list">&nbsp;</span>
-            <a href="/addEduInfo">添加学历信息</a>
+            <a href="/management1">查询档案信息</a>
           </li>
-        {{end}}
-
+        </ul>
         <div class="m_s_l_menu">学历查询</div>
         <ul class="m_s_l_ul">
           <li class="leftMenu1">
@@ -53,35 +72,15 @@
             <span class="icon_list">&nbsp;</span>
             <a href="/query3">查询历史记录</a>
           </li>
+        </ul>
           <div class="m_s_l_menu">系统功能</div>
+          <ul>
           <li class="leftMenu5">
             <span class="icon_list">&nbsp;</span>
             <a href="/loginout">退出</a>
           </li>
         </ul>
-      </div>
-
-      <div class="m_s_r" id="rightCnt">
-        <div class="m_cnt_m">
-          <h2>信息查询范围</h2>
-          <a id="1" name="1"></a>
-          <h3>&gt;&gt;学籍查询范围</h3>
-          <p>国家承认的各类高等教育在籍学生的学籍注册信息（不含自考），以及2001年以来的学籍档案（已离校学生在籍期间的学籍注册信息）。</p>
-          <p>学籍查询服务仅提供给学生本人，需实名注册后进入学信档案使用。</p>
-          <div class="line margin01">&nbsp;</div>
-          <a id="2" name="2"></a>
-          <h3>&gt;&gt;学历查询范围</h3>
-          <p>学历查询服务提供给学生本人，需实名注册后进入本系统使用。其他用户可以通过链上数据查询相关学生的身份信息，进行真伪验证。</p>
-          </div>
-        <div class="m_cnt_m">
-          <h2>学历查询-本人查询</h2>注册
-          <a href="http://chaindesk.cn" target="_blank" class="color01">FIM系统账号</a>，登录
-          <a href="javascript:void(0);" class="color01">征信档案</a>，即可免费查询本人学历。
-        </div>
-
-        <div class="m_cnt_m"></div>
-        <div class="m_cnt_m"></div>
-      </div>
+    </div>
     </div>
   </body>
   <script type="text/javascript" src="/static/js/jquery.min.js"></script>

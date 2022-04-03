@@ -19,14 +19,9 @@
   
   <div class="tools">
     <ul class="toolbar">
-      <li><span><img src="../static/images/t01.png" /></span>
-        <a href="/danganadd">添加</a></li>
-      <li ><span onclick="edit()"><img src="../static/images/t02.png" /></span>
-        </li>
       <li ><span onclick="check()"><img src="../static/images/t06.png" />查看</span></li>
       </li>
     </ul>
-    <span class="x-right" style="line-height:25px">共有数据：条</span></xblock>
   </div>
   <table class="tablelist">
     <thead>
@@ -54,10 +49,6 @@
     {{end}}
     </tbody>
   </table>
-     <div class="page"  v-show="show">
-  <div class="pagelist"> <span class="jump">上一页</span> <span class="jump">1</span><span class="jump">下一页</span> <span class="jumppoint">跳转到：</span> <span class="jumpinp">
-    <input type="text">
-    </span> <span class="jump gobtn">GO</span> </div>
 </div>
 </div>
 
@@ -65,11 +56,6 @@
   <div>
     <form name="mainForm" id="mainForm" action="/queryArchives" method="post" enctype="text/plain">
       <input id="JSONText" name="jsontext" type="hidden" value=""/>
-    </form>
-  </div>
-  <div>
-    <form name="editForm" id="mainForm" action="/modifyArchives" method="post" enctype="text/plain">
-      <input id="EditJSONText" name="editjsontext" type="hidden" value=""/>
     </form>
   </div>
 </div>
@@ -124,7 +110,7 @@
     })
 
     function check() {
-      alert("你好")
+      //alert("你好")
       var objArray = new Array();
       var checkObj = document.getElementsByName("selected")
       var checkInput
@@ -134,15 +120,11 @@
           break
         }
       }
-      alert(checkInput.value)
-      alert(checkInput.parentNode.nextSibling.nodeValue)
+      // alert(checkInput.value)
+      // alert(checkInput.parentNode.nextSibling.nodeValue)
 
-      document.getElementById('JSONText').value = "Bob"
+      document.getElementById('JSONText').value = checkInput.parentNode.parentNode.children[3].innerHTML + "!"
       document.getElementById("mainForm").submit()
-
-    }
-
-    function edit() {
 
     }
 	</script>

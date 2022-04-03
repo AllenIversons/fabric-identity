@@ -14,6 +14,7 @@
 
 <body>
 <div class="x-body">
+
   <table class="layui-table" id="layui-table">
     <tbody>
       <tr>
@@ -75,7 +76,7 @@
       <tr>
         <td colspan="6" align="right">
             <button type="button" class="layui-btn" id="addBtn" onclick="add()"> 保存 </button>
-            <a href="/management"><button class="layui-btn">取消</button></a></td>
+            <a href="/help"><button class="layui-btn">取消</button></a></td>
       </tr>
     </tbody>
   </table>
@@ -93,13 +94,13 @@
         </script> 
 <script>
     function add() {
-        alert("hellp")
+        //alert("hellp")
         var objArray = new Array();
 
 
         var tableObj = document.getElementById("layui-table");
         var length = tableObj.rows.length;
-        alert(length)
+        //alert(length)
         ArchivesObj = new Object()
         ArchivesObj.UserName = tableObj.rows[0].cells[1].getElementsByTagName("INPUT")[0].value
         ArchivesObj.Sex = tableObj.rows[0].cells[3].getElementsByTagName("SELECT")[0].value
@@ -138,7 +139,7 @@
         // alert(obj.Married)
         // alert(obj.Educated)
 
-        alert(ArchivesObj)
+        //alert(ArchivesObj)
         document.getElementById('JSONText').value = JSON.stringify(ArchivesObj)
         document.getElementById("archivesForm").submit()
 

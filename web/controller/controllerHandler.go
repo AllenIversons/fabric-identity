@@ -13,6 +13,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/fabric-identity/service"
+	"github.com/fabric-identity/web/utils"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -59,7 +60,7 @@ func (app *Application) readJSON(w http.ResponseWriter, r *http.Request, dst int
 }
 
 //档案管理
-func (app *Application) Management (w http.ResponseWriter, r *http.Request)  {
+func (app *Application) QueryManagement (w http.ResponseWriter, r *http.Request)  {
 	data := &struct{
 		Infos []*ArchivesInfo
 	}{
@@ -72,6 +73,14 @@ func (app *Application)DanganAdd(w http.ResponseWriter, r *http.Request){
 	ShowView(w, r, "Dangan-add.html", nil)
 }
 
+func (app *Application)OperateManagement(w http.ResponseWriter, r *http.Request){
+	data := &struct{
+		Infos []*ArchivesInfo
+	}{
+		Infos:ArchivesInfos,
+	}
+	ShowView(w, r, "danganmain2.html", data)
+}
 func (app *Application)AddArchives(w http.ResponseWriter, r *http.Request)()  {
 
 	bodyBytes, err := ioutil.ReadAll(r.Body)
@@ -80,7 +89,6 @@ func (app *Application)AddArchives(w http.ResponseWriter, r *http.Request)()  {
 	}
 	index := strings.Index(string(bodyBytes), "=")
 	requestBody := string(bodyBytes)[index+1:]
-	fmt.Println(requestBody)
 
 	var formData service.Archives
 	err = json.Unmarshal([]byte(requestBody), &formData)
@@ -89,50 +97,53 @@ func (app *Application)AddArchives(w http.ResponseWriter, r *http.Request)()  {
 		fmt.Println("AdSet json转结构体出错！err>>> ",err)
 	}
 	stuArchives[formData.UserName] = append(stuArchives[formData.UserName], &formData)
-	fmt.Println(len(stuArchives[formData.UserName]))
-	fmt.Println(len(stuArchives["Bob"]))
+
 	timeStr:=time.Now().Format("2006-01-02 15:04:05")
+
+	ArchivesID := utils.GetRandomString(8)
+
 	archiveInfo := ArchivesInfo{
-		ArchivesID: "VDHRC",
-		Operator:"root",
-		CurrentUser:"bob",
+		ArchivesID: ArchivesID,
+		Operator:cuser.LoginName,
+		CurrentUser:formData.UserName,
 		CreateTime:timeStr,
 		UpdateTime:timeStr,
 		InfoMsg:"",
 	}
 	ArchivesInfos = append(ArchivesInfos,&archiveInfo)
-	fmt.Println("档案摘要信息长度:",len(ArchivesInfos))
-	tableLen := len(stuArchives)
-	fmt.Println("总的档案信息长度:",tableLen)
+
 	data := &struct{
 		Infos []*ArchivesInfo
 	}{
 		Infos:ArchivesInfos,
 	}
-	ShowView(w, r, "Danganmain.html", data)
+	ShowView(w, r, "Danganmain2.html", data)
 }
 //编辑
 func (app *Application)DanganModifyShow(w http.ResponseWriter, r *http.Request){
-	fmt.Println("进入")
 	// 根据证书编号与姓名查询信息
 	//name := r.FormValue("name")
-
-	if _,ok := stuArchives["Bob"];!ok{
-		fmt.Println("没有查询到该用户")
+	bodyBytes, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return
 	}
-	fmt.Println("该用户存在")
+	indexOne := strings.Index(string(bodyBytes), "=")
+	indexTwo := strings.Index(string(bodyBytes), "!")
+	requestBody := string(bodyBytes)[indexOne+1:indexTwo]
+	if _,ok := stuArchives[requestBody];!ok{
+		fmt.Println("该用户不存在")
+	}
 
 	data := &struct {
 		Archives service.Archives
 		CurrentUser User
 	}{
-		Archives:*stuArchives["Bob"][0],
+		Archives:*stuArchives[requestBody][0],
 		CurrentUser:cuser,
 	}
 
 	ShowView(w, r, "Dangan-edit.html", data)
 }
-
 
 func (app *Application)DanganModify(w http.ResponseWriter, r *http.Request){
 	modifyArchives := service.Archives{
@@ -151,11 +162,11 @@ func (app *Application)DanganModify(w http.ResponseWriter, r *http.Request){
 		Married:r.FormValue("married"),
 		Educated:r.FormValue("educated"),
 	}
-	stuArchives["Bob"] = append(stuArchives["Bob"], &modifyArchives)
+	stuArchives[modifyArchives.UserName] = append(stuArchives[modifyArchives.UserName], &modifyArchives)
 	data := &struct {
 		ModifyInfo []*service.Archives
 	}{
-		ModifyInfo:stuArchives["Bob"],
+		ModifyInfo:stuArchives[modifyArchives.UserName],
 	}
 	ShowView(w, r, "Dangan-history.html",data)
 }
@@ -163,25 +174,42 @@ func (app *Application)DanganModify(w http.ResponseWriter, r *http.Request){
 
 //查看
 
-func (app *Application)DanganCheck(w http.ResponseWriter, r *http.Request){
-	fmt.Println("进入")
-	fmt.Println(len(stuArchives))
-	fmt.Println(len(stuArchives["Bob"]))
+
+func (app *Application)RootDanganCheck(w http.ResponseWriter, r *http.Request){
 	bodyBytes, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return
 	}
-	index := strings.Index(string(bodyBytes), "=")
-	requestBody := string(bodyBytes)[index+1:index+4]
-	fmt.Println(requestBody+"!")
-	fmt.Println(stuArchives["Bob"])
+	indexOne := strings.Index(string(bodyBytes), "=")
+	indexTwo := strings.Index(string(bodyBytes), "!")
+	requestBody := string(bodyBytes)[indexOne+1:indexTwo]
 	if _,ok := stuArchives[requestBody];!ok{
 		fmt.Println("该用户不存在")
 	}
-	fmt.Println("该用户存在")
-	fmt.Println(len(stuArchives[requestBody]))
 	checkArchives := stuArchives[requestBody][0]
-	fmt.Println(checkArchives.UserName)
+
+	data := &struct{
+		Archives *service.Archives
+	}{
+		Archives:checkArchives,
+	}
+	ShowView(w, r, "Dangan-look2.html",data)
+}
+func (app *Application)DanganCheck(w http.ResponseWriter, r *http.Request){
+
+	bodyBytes, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return
+	}
+	indexOne := strings.Index(string(bodyBytes), "=")
+	indexTwo := strings.Index(string(bodyBytes), "!")
+	requestBody := string(bodyBytes)[indexOne+1:indexTwo]
+
+	if _,ok := stuArchives[requestBody];!ok{
+		fmt.Println("该用户不存在")
+	}
+
+	checkArchives := stuArchives[requestBody][0]
 
 	data := &struct{
 		Archives *service.Archives
@@ -229,8 +257,6 @@ func (app *Application) Register(w http.ResponseWriter, r *http.Request) {
 		Password:		password,
 		IsAdmin: 		rule,
 	}
-	fmt.Println(newUser)
-	fmt.Println("初始",len(users))
 	for _,k := range users {
 		if k.LoginName == newUser.LoginName {
 			fmt.Println("已经存在")
@@ -238,7 +264,6 @@ func (app *Application) Register(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	users = append(users, *newUser)
-	fmt.Println("完成",len(users))
 	ShowView(w, r, "login.html", nil)
 
 }
@@ -247,7 +272,6 @@ func (app *Application) Register(w http.ResponseWriter, r *http.Request) {
 func (app *Application) Login(w http.ResponseWriter, r *http.Request) {
 	loginName := r.FormValue("loginName")
 	password := r.FormValue("password")
-	fmt.Println("login:",len(users))
 	var flag bool
 	for _, user := range users {
 		if user.LoginName == loginName && user.Password == password {
@@ -267,7 +291,7 @@ func (app *Application) Login(w http.ResponseWriter, r *http.Request) {
 
 	if flag {
 		// 登录成功
-		ShowView(w, r, "index.html", data)
+		ShowView(w, r, "help.html", data)
 	}else{
 		// 登录失败
 		data.Flag = true
@@ -311,65 +335,50 @@ func (app *Application) AddScoreShow (w http.ResponseWriter, r *http.Request){
 
 //添加成绩信息
 func (app *Application) AddScore(w http.ResponseWriter, r *http.Request) {
-	var formData []*service.Score
-	err := json.NewDecoder(r.Body).Decode(&formData)
-	if err != nil{
-		fmt.Println("AdSet json转结构体出错！err>>> ",err)
+	var formDataArray []*service.Score
+	bodyBytes, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return
 	}
-	for i,v := range formData{
-		fmt.Println(i,v)
+	indexLeft := []int{}
+	indexRight := []int{}
+	for i:=0;i<len(string(bodyBytes));i++ {
+		if string(bodyBytes)[i] == 123{
+
+			indexLeft = append(indexLeft, i)
+		}
+		if string(bodyBytes)[i] == 125{
+			indexRight = append(indexRight, i)
+		}
 	}
+	requestBody := []string{}
+	for i:=0;i<len(indexLeft);i++{
+		str := string(bodyBytes)[indexLeft[i]:indexRight[i]+1]
+		requestBody = append(requestBody, str)
+	}
+	for i:=0;i<len(requestBody);i++{
+		formData := service.Score{}
+		err = json.Unmarshal([]byte(requestBody[i]), &formData)
+		if err != nil{
+			fmt.Println("AdSet json转结构体出错！err>>> ",err)
+		}
+		formDataArray = append(formDataArray, &formData)
+	}
+
 
 	data := &struct {
 		Items []*service.Score
 		StuNum string
 		StuName string
 	}{
-		Items: []*service.Score{
-			{StuNum: "12345",
-				Num:        "1",
-				ClassType:  "基础课",
-				ClassNum:   "767000101",
-				ClassName:  "中国特色社会主义理论与实践研究",
-				SchoolYear: "第一学期",
-				ClassScore: "90"},
-			{StuNum: "",
-				Num:        "2",
-				ClassType:  "专业课",
-				ClassNum:   "767000104",
-				ClassName:  "计算机网络",
-				SchoolYear: "第二学期",
-				ClassScore: "94"},
-			{StuNum: "",
-				Num:        "3",
-				ClassType:  "公共选修课",
-				ClassNum:   "7767040304",
-				ClassName:  "虚拟现实技术",
-				SchoolYear: "第三学期",
-				ClassScore: "99"},
-			{StuNum: "",
-				Num:        "4",
-				ClassType:  "专业课",
-				ClassNum:   "767040305	",
-				ClassName:  "网络空间安全	",
-				SchoolYear: "第四学期",
-				ClassScore: "96"},
-			{StuNum: "",
-				Num:        "5",
-				ClassType:  "专业课	",
-				ClassNum:   "767000104",
-				ClassName:  "区块链技术",
-				SchoolYear: "第五学期",
-				ClassScore: "99"},
-		},
+		Items:formDataArray,
 
-		StuNum:"12345",
-		StuName:"Allen",
+		StuNum:formDataArray[0].StuNum,
+		StuName:"",
 	}
 	addStu := StuScore{data.Items,data.StuNum,data.StuName}
 	stuScores = append(stuScores, addStu)
 
-	fmt.Println("人数：",len(stuScores))
 	ShowView(w,r,"queryScoreResult.html",data)
 }
 func (app *Application) ShowScore(w http.ResponseWriter, r *http.Request)  {
@@ -443,8 +452,8 @@ func (app *Application) FindCertByNoAndName(w http.ResponseWriter, r *http.Reque
 	var edu = service.Education{}
 	json.Unmarshal(result, &edu)
 
-	fmt.Println("根据证书编号与姓名查询信息成功：")
-	fmt.Println(edu)
+	//fmt.Println("根据证书编号与姓名查询信息成功：")
+	//fmt.Println(edu)
 
 	data := &struct {
 		Edu service.Education
@@ -496,15 +505,13 @@ func (app *Application) QueryPage3(w http.ResponseWriter, r *http.Request)  {
 //根据身份证号查询成绩信息
 
 func (app *Application) ByNameFindScore (w http.ResponseWriter, r *http.Request)  {
-	fmt.Println("进入")
 	certNo := r.FormValue("stuNo")
-	fmt.Println("stuNo",certNo)
+
 	//name := r.FormValue("name")
 	result := StuScore{}
 	for i:=0;i<len(stuScores);i++{
-		fmt.Println("v.StuNum",stuScores[i].StuNum)
+
 		if stuScores[i].StuNum == certNo{
-			fmt.Println("相等")
 			result.StuClss = stuScores[i].StuClss
 			result.StuName = stuScores[i].StuName
 			result.StuNum = certNo

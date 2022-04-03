@@ -87,20 +87,21 @@ function saveVari() {
     var objArray = new Array();
     //alert(edtitable.rows.length)
     for(var i=2;i< edtitable.rows.length-1;i++) {
-        obj = new Object()
+        scoreObj = new Object()
         var inputs= $("thead").find('input')
         var o = inputs[0]
         tr = edtitable.rows[i];
-        obj[$(o).attr('name')] = $(o).val()
-        obj.Num = tr.childNodes[1].innerHTML;
-        obj.ClassType = tr.childNodes[2].innerHTML;
-        obj.ClassNum = tr.childNodes[3].innerHTML;
-        obj.ClassName = tr.childNodes[4].innerHTML;
-        obj.SchoolYear = tr.childNodes[5].innerHTML;
-        obj.ClassScore = tr.childNodes[6].innerHTML;
-        //alert(obj.toString())
-        objArray.push(obj);
+        scoreObj[$(o).attr('name')] = $(o).val()
+        scoreObj.Num = tr.childNodes[1].innerHTML;
+        scoreObj.ClassType = tr.childNodes[2].innerHTML;
+        scoreObj.ClassNum = tr.childNodes[3].innerHTML;
+        scoreObj.ClassName = tr.childNodes[4].innerHTML;
+        scoreObj.SchoolYear = tr.childNodes[5].innerHTML;
+        scoreObj.ClassScore = tr.childNodes[6].innerHTML;
+        //alert(JSON.stringify(scoreObj))
+        objArray.push(JSON.stringify(scoreObj));
     }
+    //alert(objArray.toString())
     document.getElementById('JSONText').value = objArray
     //alert(document.getElementById('JSONText').value.toString())
     //将对象放入对象数组
