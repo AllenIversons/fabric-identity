@@ -36,7 +36,16 @@
       <!--<img src="images/d.png" alt="">-->
     </div>
     <div class="content-right">
+
       <div class="right-infp">
+        {{if .Flag}}
+          <div id="popout">
+            <div class="popout">
+              <div class="">用户名或密码输入错误!请重新输入</div>
+              <p><button type="button" name="button">好的</button></p>
+            </div>
+          </div>
+        {{end}}
         <form id="fm1" action="/login" method="post" autocomplete="off">
           <div class="right-infp-name">
             <span class="ct_img_yhm">&nbsp;</span>
@@ -63,5 +72,69 @@
 </div>
 
 </body>
-
+<script>
+  $(document).ready(function() {
+    $('.popout button').on('click',function() {
+      $('#popout').css('display','none');
+    })
+  })
+</script>
+<style type="text/css">
+  #popout{
+    width: 50%;
+    height: 100%;
+    font-family: '微软雅黑';
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    z-index: 1;
+    display: block;
+  }
+  .popout{
+    width: 370px;
+    height: auto;
+    line-height: 30px;
+    color: #000;
+    font-size: 20px;
+    background: #fff;
+    padding: 30px;
+    text-align: left;
+    position: relative;
+    left:50%;
+    top: 200px;
+    margin-left:-250px;
+    z-index:1;
+    border-radius: 2px;
+  }
+  .popout>div,.popout>div p{
+    width: 100%;
+    font-family: '微软雅黑';
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+  .popout>div p:nth-of-type(1){
+    color: #333;
+    font-size: 20px;
+    font-weight: bolder;
+  }
+  .popout>div p:nth-of-type(2){
+    color: #58666e;
+    font-size: 16px;
+  }
+  .popout>p{
+    text-align: right;
+  }
+  .popout>p button{
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    background-color: #3288e6;
+    font-family: '微软雅黑';
+    cursor: pointer;
+  }
+</style>
 </html>

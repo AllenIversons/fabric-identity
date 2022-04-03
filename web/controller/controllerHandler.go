@@ -82,11 +82,11 @@ func (app *Application)OperateManagement(w http.ResponseWriter, r *http.Request)
 	ShowView(w, r, "danganmain2.html", data)
 }
 func (app *Application)AddArchives(w http.ResponseWriter, r *http.Request)()  {
-
 	bodyBytes, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return
 	}
+
 	index := strings.Index(string(bodyBytes), "=")
 	requestBody := string(bodyBytes)[index+1:]
 
