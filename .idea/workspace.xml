@@ -2,25 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="155419ca-55e9-422e-ac7e-fbbcfdc92e34" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/web/tpl/Dangan-look2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/tpl/danganmain2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/utils/tools.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric-identity" beforeDir="false" afterPath="$PROJECT_DIR$/fabric-identity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/controller/controllerHandler.go" beforeDir="false" afterPath="$PROJECT_DIR$/web/controller/controllerHandler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/js/editTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/js/editTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/Dangan-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/Dangan-add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/Dangan-history.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/Dangan-history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/Dangan-look.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/Dangan-look.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/danganmain.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/danganmain.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/download_bookadd.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/help.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/help.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/query2.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/query2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/query3.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/query3.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/queryScore.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/queryScore.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/queryScoreResult.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/queryScoreResult.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tpl/uploadScore.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/tpl/uploadScore.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webServer.go" beforeDir="false" afterPath="$PROJECT_DIR$/web/webServer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,15 +13,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/tpl/uploadScore.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="75" column="67" selection-start-line="75" selection-start-column="67" selection-end-line="75" selection-end-column="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/static/js/editTable.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -75,11 +49,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/controller/controllerHandler.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="190" column="20" lean-forward="true" selection-start-line="190" selection-start-column="20" selection-end-line="190" selection-end-column="20" />
+            <state relative-caret-position="135">
+              <caret line="217" column="5" lean-forward="true" selection-start-line="217" selection-start-column="5" selection-end-line="217" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+              <folding>
+                <element signature="e#46#248#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,7 +74,7 @@
         <entry file="file://$PROJECT_DIR$/web/tpl/queryResult.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="164">
-              <caret line="87" column="42" lean-forward="true" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="42" />
+              <caret line="87" column="42" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -134,7 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>github.com/kongyixueyuan.com/education/</find>
       <find>github.com/kongyixueyuan.com/education</find>
       <find>chaindesk</find>
       <find>popout</find>
@@ -164,6 +149,7 @@
       <find>操作用户为</find>
       <find>总的档案信息长度</find>
       <find>fmt</find>
+      <find>chann</find>
     </findStrings>
     <replaceStrings>
       <replace>github.com/fabric-identity/</replace>
@@ -195,7 +181,6 @@
         <option value="$PROJECT_DIR$/web/static/css/editTable.css" />
         <option value="$PROJECT_DIR$/web/tpl/queryHistory.html" />
         <option value="$PROJECT_DIR$/web/static/css/addEdu.css" />
-        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/service/eduService.go" />
         <option value="$PROJECT_DIR$/sdkInit/start.go" />
         <option value="$PROJECT_DIR$/README.md" />
@@ -225,11 +210,12 @@
         <option value="$PROJECT_DIR$/web/webServer.go" />
         <option value="$PROJECT_DIR$/web/tpl/Dangan-history.html" />
         <option value="$PROJECT_DIR$/web/controller/controllerHandler.go" />
+        <option value="$PROJECT_DIR$/main.go" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="143" />
+    <option name="x" value="55" />
     <option name="y" value="25" />
     <option name="width" value="1352" />
     <option name="height" value="788" />
@@ -307,10 +293,10 @@
     </option>
   </component>
   <component name="ToolWindowManager">
-    <frame x="143" y="25" width="1352" height="788" extended-state="0" />
+    <frame x="55" y="25" width="1352" height="788" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497191" visible="true" weight="0.3038168" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497191" visible="true" weight="0.3038168" />
       <window_info id="Structure" order="1" sideWeight="0.502809" side_tool="true" weight="0.3038168" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -323,7 +309,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.37826088" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.38405797" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -444,16 +430,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2937">
-          <caret line="142" selection-start-line="142" selection-end-line="142" />
-          <folding>
-            <element signature="e#46#248#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -664,7 +640,7 @@
     <entry file="file://$PROJECT_DIR$/web/tpl/queryResult.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
-          <caret line="87" column="42" lean-forward="true" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="42" />
+          <caret line="87" column="42" selection-start-line="87" selection-start-column="22" selection-end-line="87" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -684,8 +660,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/controller/controllerHandler.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="190" column="20" lean-forward="true" selection-start-line="190" selection-start-column="20" selection-end-line="190" selection-end-column="20" />
+        <state relative-caret-position="135">
+          <caret line="217" column="5" lean-forward="true" selection-start-line="217" selection-start-column="5" selection-end-line="217" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="e#46#248#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

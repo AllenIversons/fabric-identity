@@ -26,7 +26,7 @@ func main() {
 	initInfo := &sdkInit.InitInfo{
 
 		ChannelID: "kevinkongyixueyuan",
-		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/kongyixueyuan.com/education/fixtures/artifacts/channel.tx",
+		ChannelConfig: os.Getenv("GOPATH") + "/src/github.com/fabric-identity/fixtures/artifacts/channel.tx",
 
 		OrgAdmin:"Admin",
 		OrgName:"Org1",
@@ -34,7 +34,7 @@ func main() {
 
 		ChaincodeID: EduCC,
 		ChaincodeGoPath: os.Getenv("GOPATH"),
-		ChaincodePath: "github.com/kongyixueyuan.com/education/chaincode/",
+		ChaincodePath: "github.com/fabric-identity/chaincode/",
 		UserName:"User1",
 	}
 
