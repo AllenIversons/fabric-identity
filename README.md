@@ -45,7 +45,7 @@
 6. 启动服务
 
    ```shell
-   $ ./education
+   $ ./fabric-identity
    ```
 
 7. 浏览器访问
