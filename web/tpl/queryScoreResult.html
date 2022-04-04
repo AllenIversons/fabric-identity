@@ -45,10 +45,25 @@
             </div>
 
         <p>
-            <a href="/help">成绩下载</a>
-            <a href="/help">返回首页</a>
+            <button type="button" class="layui-btn" id="addBtn" onclick="download()"> 下载 </button>
+            <a href="/help"><button class="layui-btn">返回首页</button></a></td>
         </p>
     </div>
 </div>
 </body>
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.table2excel.js"></script>
+<script>
+    function download(){
+        $("#table").table2excel({
+            exclude: ".noExl",
+            name: "Excel Document Name",
+            filename: "download_transcript.xls",
+            exclude_img: true,
+            exclude_links: true,
+            exclude_inputs: true
+        });
+    }
+
+</script>
 </html>

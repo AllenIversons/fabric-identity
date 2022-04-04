@@ -108,16 +108,16 @@ func (app *Application)OperateManagement(w http.ResponseWriter, r *http.Request)
 	ShowView(w, r, "danganmain2.html", data)
 }
 func (app *Application)AddArchives(w http.ResponseWriter, r *http.Request)()  {
-	fmt.Println("进入")
+	//fmt.Println("进入")
 	bodyBytes, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return
 	}
-	fmt.Println(string(bodyBytes))
+	//fmt.Println(string(bodyBytes))
 	indexOne := strings.Index(string(bodyBytes), "{")
 	indexTwo := strings.Index(string(bodyBytes), "}")
 	requestBody := string(bodyBytes)[indexOne:indexTwo+1]
-	fmt.Println(requestBody+"!")
+	//fmt.Println(requestBody+"!")
 	var formData service.Archives
 	err = json.Unmarshal([]byte(requestBody), &formData)
 	//err = json.NewDecoder(r.Body).Decode(&formData)
