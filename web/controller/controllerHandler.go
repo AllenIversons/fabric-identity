@@ -59,6 +59,32 @@ func (app *Application) readJSON(w http.ResponseWriter, r *http.Request, dst int
 	return nil
 }
 
+
+func (app *Application) UpdateUserShow (w http.ResponseWriter, r *http.Request)  {
+	data := &struct {
+		CurrentUser User
+	}{
+		 CurrentUser:cuser,
+	}
+	ShowView(w, r, "updateuserinfo.html", data)
+}
+
+func (app *Application) UpdateUserInfo (w http.ResponseWriter, r *http.Request)  {
+	loginName := r.FormValue("loginName")
+	password := r.FormValue("newPassword")
+	for i,k := range users {
+		if k.LoginName == loginName {
+			users[i].Password = password
+			fmt.Println("密码修改成功")
+		}
+	}
+
+	fmt.Println(users)
+	ShowView(w, r, "login.html", nil)
+
+
+}
+
 //档案管理
 func (app *Application) QueryManagement (w http.ResponseWriter, r *http.Request)  {
 	data := &struct{
@@ -82,14 +108,16 @@ func (app *Application)OperateManagement(w http.ResponseWriter, r *http.Request)
 	ShowView(w, r, "danganmain2.html", data)
 }
 func (app *Application)AddArchives(w http.ResponseWriter, r *http.Request)()  {
+	fmt.Println("进入")
 	bodyBytes, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		return
 	}
-
-	index := strings.Index(string(bodyBytes), "=")
-	requestBody := string(bodyBytes)[index+1:]
-
+	fmt.Println(string(bodyBytes))
+	indexOne := strings.Index(string(bodyBytes), "{")
+	indexTwo := strings.Index(string(bodyBytes), "}")
+	requestBody := string(bodyBytes)[indexOne:indexTwo+1]
+	fmt.Println(requestBody+"!")
 	var formData service.Archives
 	err = json.Unmarshal([]byte(requestBody), &formData)
 	//err = json.NewDecoder(r.Body).Decode(&formData)
@@ -401,7 +429,7 @@ func (app *Application) AddEdu(w http.ResponseWriter, r *http.Request)  {
 		Major:r.FormValue("major"),
 		QuaType:r.FormValue("quaType"),
 		Mode:r.FormValue("mode"),
-		Graduation:r.FormValue("graduation"),
+		Graduation:r.FormValue("graduatio"),
 		CertNo:r.FormValue("certNo"),
 		Photo:r.FormValue("photo"),
 	}

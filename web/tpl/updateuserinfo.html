@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>updateuserinfo</title>
+	<link rel="stylesheet" href="../static/css/base.css" />
+	<link rel="stylesheet" href="../static/css/layout.css"/>
+</head>
+<body>
+	<div id="wrapper">
+		<header id="header">
+			<div id="headBox">
+				<div class="w960 oh">
+					<a href="#" class="fl mt10"><img src="../static/images/logo1.png" alt="logo" /></a>
+				</div>
+			</div>
+		</header><!-- // header end -->
+		<div class="container w960 mt20">
+			<div id="processor" >
+				<ol class="processorBox oh">
+					<li class="current">
+						<div class="step_inner fl">
+							<font size="4"><strong>修改密码</strong></font>
+
+						</div>
+					</li>
+					<li>
+						<div class="step_inner">
+							<h4></h4>
+						</div>
+					</li>
+					<li>
+						<div class="step_inner fr">
+			
+							<h4></h4>
+						</div>
+					</li>
+				</ol>
+			</div>
+			<div class="content">
+				<div id="step1" class="step hide">
+					<form action="/UpdateUser" method="post" id="step1_frm" autocomplete="off" onsubmit="return check(this)">
+						<div class="frm_control_group">
+							<label class="frm_label">用户名</label>
+							<div class="frm_controls">
+								<input type="text" id="loginName" name="loginName" class="frm_input email" maxlength="32" value="{{.CurrentUser.LoginName}}"/>
+								<p class="frm_tips">作为登录帐号，请填写未被本平台注册、未被其他用户帐号绑定的名称</p>
+							</div>
+						</div>
+						<div class="frm_control_group">
+							<label class="frm_label">旧密码</label>
+							<div class="frm_controls">
+								<input type="password" id="password" name="password" class="frm_input passwd"/>
+								<p class="frm_tips">字母、数字或者英文符号，最短6位，区分大小写</p>
+							</div>
+						</div>
+						<div class="frm_control_group">
+							<label class="frm_label">新密码</label>
+							<div class="frm_controls">
+								<input type="password" name="newPassword" id="newPassword" class="frm_input passwd2"/>
+							</div>
+						</div>
+
+						<div class="toolBar">
+							<input id="nextBtn" class="btn btn_primary" name="submit" accesskey="l" value="提交" tabindex="3" type="submit" title="提交">
+						</div>
+					</form>
+				</div><!-- // step1 end -->
+			</div>
+		</div><!-- // container end -->
+		<footer id="footer" class="w960 oh">
+			<span class="fl">© 2022 - 2033 XuLin All Right Reserved.</span>
+			<nav class="footNavs tr fr">
+				<a href="#">联系XXX</a>
+				<span class="sp">|</span>
+				<a href="#">投诉建议</a>
+			</nav>
+		</footer><!-- // footer end -->
+	</div><!-- // wrapper end -->
+	
+	<script src="../static/js/jquery.min.js"></script>
+	<script>
+
+		function showTips(txt,time,status)
+		{
+			var htmlCon = '';
+			if(txt != ''){
+				if(status != 0 && status != undefined){
+					htmlCon = '<div class="tipsBox" style="width:220px;padding:10px;background-color:#4AAF33;border-radius:4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;color:#fff;box-shadow:0 0 3px #ddd inset;-webkit-box-shadow: 0 0 3px #ddd inset;text-align:center;position:fixed;top:25%;left:50%;z-index:999999;margin-left:-120px;"><img src="../static/images/ok.png" style="vertical-align: middle;margin-right:5px;" alt="OK，"/>'+txt+'</div>';
+				}else{
+					htmlCon = '<div class="tipsBox" style="width:220px;padding:10px;background-color:#D84C31;border-radius:4px;-webkit-border-radius: 4px;-moz-border-radius: 4px;color:#fff;box-shadow:0 0 3px #ddd inset;-webkit-box-shadow: 0 0 3px #ddd inset;text-align:center;position:fixed;top:25%;left:50%;z-index:999999;margin-left:-120px;"><img src="../static/images/err.png" style="vertical-align: middle;margin-right:5px;" alt="Error，"/>'+txt+'</div>';
+				}
+				$('body').prepend(htmlCon);
+				if(time == '' || time == undefined){
+					time = 1500;
+				}
+				setTimeout(function(){ $('.tipsBox').remove(); },time);
+			}
+		}
+		function check(obj) {
+			var email = $('.email').val();
+			var passwd = $('.passwd').val();
+			var passwd2 = $('.passwd2').val();
+			var verifyCode = $('.verifyCode').val();
+			var EmailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/; //邮件正则
+			if (email == '') {
+				showTips('请填写您的用户名~');
+				return false
+			} else if (passwd == '') {
+				showTips('请填写您的旧密码~');
+				return false
+			} else if (passwd2 == '') {
+				showTips('请输入您的新密码~');
+				return false
+			}
+			showTips('提交成功~ 即将进入下一步', 2500, 1);
+			return true
+		}
+
+	</script>
+</body>
+</html>

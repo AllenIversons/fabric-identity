@@ -46,7 +46,7 @@
                   <p>
                       <span><font color="#fffaf0">入学日期：</font></span>
                       <span>
-                        <input type="text" name="enrollDate" value="{{.Edu.EnrollDate}}"class="input_text" tabindex="1" onfocus="if(this.placeholder=='入学日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='入学日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="入学日期" size="25" autocomplete="off">
+                        <input type="date" name="enrollDate" value="{{.Edu.EnrollDate}}"class="input_text" tabindex="1" onfocus="if(this.placeholder=='入学日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='入学日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="入学日期" size="25" autocomplete="off">
                       </span>
                   </p>
                   <p>
@@ -56,21 +56,26 @@
                       </span>
                   </p>
                   <p>
-                      <span><font color="#fffaf0">学历类别：</font></span>
-                      <span>
-                        <input type="text" name="quaType" value="{{.Edu.QuaType}}" class="input_text" tabindex="1" onfocus="if(this.placeholder=='学历类别'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='学历类别';this.className ='input_text'}" accesskey="n" type="text" placeholder="学历类别" size="25" autocomplete="off">
-                      </span>
-                  </p>
-                  <p>
                       <span><font color="#fffaf0">最高学位：</font></span>
                       <span>
-                        <input type="text" name="quatype" value="{{.Edu.QuaType}}" class="input_text" tabindex="1" onfocus="if(this.placeholder=='最高学位'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='最高学位';this.className ='input_text'}" accesskey="n" type="text" placeholder="最高学位" size="25" autocomplete="off">
+                       <select class="form-control" id="quaType" name="quaType">
+                          <option>本科</option>
+                          <option>硕士</option>
+                          <option>博士</option>
+                      </select>
+                        <input type="hidden" id="quatypeInput" value="{{.Edu.QuaType}}" />
                       </span>
                   </p>
                   <p>
                       <span><font color="#fffaf0">毕(结)业：</font></span>
                       <span>
-                        <input type="text" name="graduation" value="{{.Edu.Graduation}}" class="input_text" tabindex="1" onfocus="if(this.placeholder=='毕业/结业'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='毕业/结业';this.className ='input_text'}" accesskey="n" type="text" placeholder="毕业/结业" size="25" autocomplete="off">
+
+                          <select class="form-control" name="graduatio">
+                              <option>在读</option>
+                            <option>已毕业</option>
+
+                        </select>
+                          <input type="hidden" id="graduatioInput" value="{{.Edu.Graduation}}" />
                       </span>
                   </p>
               </div>
@@ -84,7 +89,7 @@
                   <p>
                       <span><font color="#fffaf0">出生日期：</font></span>
                       <span>
-                        <input type="text" name="birthDay" value="{{.Edu.BirthDay}}" class="input_text" tabindex="1" onfocus="if(this.placeholder=='出生日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='出生日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="出生日期" size="25" autocomplete="off">
+                        <input type="date" name="birthDay" value="{{.Edu.BirthDay}}" class="input_text" tabindex="1" onfocus="if(this.placeholder=='出生日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='出生日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="出生日期" size="25" autocomplete="off">
                       </span>
                   </p>
                   <p>
@@ -96,7 +101,7 @@
                   <p>
                       <span><font color="#fffaf0">毕(结)业日期：</font></span>
                       <span>
-                        <input type="text" name="graduationDate" value="{{.Edu.GraduationDate}}" class="input_text" tabindex="1" onfocus="if(this.placeholder=='毕(结)业日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='毕(结)业日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="毕(结)业日期" size="25" autocomplete="off">
+                        <input type="date" name="graduationDate" value="{{.Edu.GraduationDate}}" class="input_text" tabindex="1" onfocus="if(this.placeholder=='毕(结)业日期'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='毕(结)业日期';this.className ='input_text'}" accesskey="n" type="text" placeholder="毕(结)业日期" size="25" autocomplete="off">
                       </span>
                   </p>
                   <p>
@@ -108,7 +113,11 @@
                   <p>
                       <span><font color="#fffaf0">学习形式：</font></span>
                       <span>
-                        <input type="text" name="mode" value="{{.Edu.Mode}}" class="input_text" tabindex="1" onfocus="if(this.placeholder=='学习形式'){this.placeholder='';}this.className ='input_text input_text_focus'" onblur="if(this.value==''){this.placeholder='学习形式';this.className ='input_text'}" accesskey="n" type="text" placeholder="学习形式" size="25" autocomplete="off" placeholder="">
+                          <select class="form-control" id="mode" name="mode">
+                              <option>全日制</option>
+                              <option>非全日制</option>
+                          </select>
+                        <input type="hidden" id="modeInput" name="mode" value="{{.Edu.Mode}}" />
                       </span>
                   </p>
                   <p>
@@ -150,7 +159,9 @@
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
     $(function() {
+
         // 上传图片
         $('#file').unbind('change').bind('change',function() {
             event.stopPropagation();

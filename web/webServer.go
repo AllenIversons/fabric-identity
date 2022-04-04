@@ -38,7 +38,8 @@ func WebStart(app controller.Application)  {
 	http.HandleFunc("/modifyArchives",app.DanganModifyShow)
 	http.HandleFunc("/DanganModify",app.DanganModify)
 
-
+	http.HandleFunc("/updateUserInfo",app.UpdateUserShow)
+	http.HandleFunc("/UpdateUser",app.UpdateUserInfo)
 
 	http.HandleFunc("/index", app.Index)
 	http.HandleFunc("/help", app.Help)
