@@ -29,7 +29,15 @@
     &nbsp&nbsp&nbsp&nbsp&nbsp
     &nbsp&nbsp&nbsp&nbsp&nbsp
     &nbsp&nbsp&nbsp&nbsp&nbsp
-    当前用户:<a>{{.CurrentUser.LoginName}}</a>
+    {{if eq .CurrentUser.IsAdmin "T"}}
+    当前用户为:超级管理员<a>{{.CurrentUser.LoginName}}</a>
+    {{end}}
+    {{if eq .CurrentUser.IsAdmin "A"}}
+      当前用户为:访问者<a>{{.CurrentUser.LoginName}}</a>
+    {{end}}
+    {{if eq .CurrentUser.IsAdmin "S"}}
+      当前用户为:学生<a>{{.CurrentUser.LoginName}}</a>
+    {{end}}
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <a href="/updateUserInfo">修改用户信息<a/>

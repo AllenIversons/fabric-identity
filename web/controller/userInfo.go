@@ -16,7 +16,7 @@ type Application struct {
 type User struct {
 	LoginName	string
 	Password	string
-	IsAdmin	string
+	IsAdmin		string
 }
 
 type StuScore struct {
